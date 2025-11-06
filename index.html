@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Baba!</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* --- Page Navigation --- */
+        .page {
+            display: none; /* Hidden by default */
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .page.active {
+            display: block; /* Shown by JS */
+            opacity: 1;
+        }
+
+        /* --- Nav Link Styling --- */
+        .nav-link {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e3a8a; /* text-blue-800 */
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            background-color: transparent;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        .nav-link:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        .nav-link.active-nav {
+            color: #d63384; /* pink-600 */
+            border-color: #f472b6; /* pink-400 */
+            box-shadow: 0 0 10px rgba(244, 114, 182, 0.5);
+        }
+
+        /* --- Animation: Title Pulse --- */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.03);
+            }
+        }
+        .animate-title-pulse {
+            animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* --- Animation: Confetti Fall --- */
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            animation: fall 10s linear infinite;
+            z-index: 50;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-sky-200 via-blue-300 to-sky-300 text-slate-900 antialiased">
+
+    <!-- Confetti container -->
+    <div id="confetti-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-50 overflow-hidden"></div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto p-4 min-h-screen">
+        
+        <!-- Navigation -->
+        <nav class="bg-white bg-opacity-70 backdrop-blur-sm rounded-lg p-4 mb-8 sticky top-4 z-40 shadow-lg">
+            <ul class="flex justify-center space-x-4 md:space-x-8">
+                <li><button onclick="showPage('home')" class="nav-link" id="nav-home">Home</button></li>
+                <li><button onclick="showPage('photos')" class="nav-link" id="nav-photos">Photos</button></li>
+                <li><button onclick="showPage('wishes')" class="nav-link" id="nav-wishes">Wishes</button></li>
+            </ul>
+        </nav>
+
+        <!-- Page Content Wrapper -->
+        <main id="content">
+
+            <!-- ======================= -->
+            <!-- ===== HOME PAGE ===== -->
+            <!-- ======================= -->
+            <div id="page-home" class="page">
+                <div class="bg-white bg-opacity-90 rounded-lg shadow-xl p-8 md:p-12 text-center overflow-hidden">
+                    <h1 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-yellow-300 to-sky-400 underline decoration-blue-400 decoration-wavy mb-6 animate-title-pulse">
+                        HAPPY BIRTHDAY BABA
+                    </h1>
+                    <!-- This text is from your example, but corrected to "Baba" and "he" -->
+                    <div class="text-lg md:text-xl text-slate-700 space-y-3">
+                        <p>Baba is a very nice man born on November 6, 1983.</p>
+                        <p>A huge source of inspiration for everyone, with an amazing sense of character, <br/>he is one of the best people on the face of this planet &lt;3</p>
+                        <p class="font-bold text-2xl text-blue-600 pt-4">Wishing you a very happy birthday, Mr.Impossible!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================= -->
+            <!-- ===== PHOTOS PAGE ===== -->
+            <!-- ======================= -->
+            <div id="page-photos" class="page">
+                <h2 class="text-4xl font-bold text-center text-slate-900 mb-8">Photo Gallery</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- Row 1 -->
+                    <div class="bg-white p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-pink-500/50">
+                        <img src="./1.jpeg" alt="Photo 1" class="rounded-md w-full h-auto">
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-yellow-500/50">
+                        <img src="./3.jpeg" alt="Photo 2" class="rounded-md w-full h-auto">
+                    </div>
+                    <!-- Row 2 -->
+                    <div class="bg-white p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-sky-500/50">
+                        <img src="./2.jpeg" alt="Photo 3" class="rounded-md w-full h-auto">
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-green-500/50">
+                        <img src="./4.jpeg" alt="Photo 4" class="rounded-md w-full h-auto">
+                    </div>
+                    <!-- Row 3 -->
+                    <div class="bg-white p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-pink-500/50">
+                        <img src="./5.jpeg" alt="Photo 5" class="rounded-md w-full h-auto">
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-yellow-500/50">
+                        <img src="./6.jpeg" alt="Photo 6" class="rounded-md w-full h-auto">
+                    </div>
+                </div>
+            </div>
+
+        
+            <!-- ======================= -->
+            <!-- ===== PHOTOS PAGE ===== -->
+            <!-- ======================= -->
+            <div id="page-photos" class="page">
+                <h2 class="text-4xl font-bold text-center text-slate-100 mb-8">Photo Gallery</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- Row 1 -->
+                    <div class="bg-slate-800 p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-pink-500/50">
+                        <img src="./1.jpeg" alt="Photo 1" class="rounded-md w-full h-auto">
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-yellow-500/50">
+                        <img src="./2.jpeg" alt="Photo 2" class="rounded-md w-full h-auto">
+                    </div>
+                    <!-- Row 2 -->
+                    <div class="bg-slate-800 p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-sky-500/50">
+                        <img src="./3.jpeg" alt="Photo 3" class="rounded-md w-full h-auto">
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-green-500/50">
+                        <img src="./4.jpeg" alt="Photo 4" class="rounded-md w-full h-auto">
+                    </div>
+                    <!-- Row 3 -->
+                    <div class="bg-slate-800 p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-pink-500/50">
+                        <img src="./5.jpeg" alt="Photo 5" class="rounded-md w-full h-auto">
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-yellow-500/50">
+                        <img src="./6.jpeg" alt="Photo 6" class="rounded-md w-full h-auto">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================= -->
+            <!-- ===== WISHES PAGE ===== -->
+            <!-- ======================= -->
+            <div id="page-wishes" class="page">
+                <h2 class="text-4xl font-bold text-center text-slate-900 mb-8">Wishes from Everyone</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Wish Card 1 -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:rotate-[-3deg] hover:scale-105 hover:shadow-pink-500/50">
+                        <p class="text-lg text-slate-700 mb-4">"My Superhero and the Love of my Life"</p>
+                        <p class="text-right font-bold text-slate-500">- Renuka</p>
+                    </div>
+                    <!-- Wish Card 2 -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:rotate-[3deg] hover:scale-105 hover:shadow-yellow-500/50">
+                        <p class="text-lg text-slate-700 mb-4">"Most hardworking and talented man I know (everything except studies HAHAHA)"</p>
+                        <p class="text-right font-bold text-slate-500">- Sadana</p>
+                    </div>
+                    <!-- Wish Card 3 -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:rotate-[-3deg] hover:scale-105 hover:shadow-sky-500/50">
+                        <p class="text-lg text-slate-700 mb-4">"Wannabe comedian like Rajasekhar (google what is Wannabe)"</p>
+                        <p class="text-right font-bold text-slate-500">- Buven</p>
+                    </div>
+                    <!-- Wish Card 4 -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:rotate-[3deg] hover:scale-105 hover:shadow-pink-500/50">
+                        <p class="text-lg text-slate-700 mb-4">"Office Work pudikadha manidhan"</p>
+                        <p class="text-right font-bold text-slate-500">- Avinash</p>
+                    </div>
+                    <!-- Wish Card 5 -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:rotate-[-3deg] hover:scale-105 hover:shadow-yellow-500/50">
+                        <p class="text-lg text-slate-700 mb-4">"நான் உடுத்தும் ஒவ்வொரு புதிய ஆடைக்கும் பாராட்டு கிடைப்பதற்குக் காரணம், பலர் என் அக்கா என்று நினைக்கிறார்கள். ஆனால் எனக்கு மட்டும் தெரியும் — அதற்குக் காரணம் இன்னொருவர் இருக்கிறார்..., பாபா ❤️ (எந்த பக்கமும் சாயாத பாபா)."</p>
+                        <p class="text-right font-bold text-slate-500">- Bharath</p>
+                    </div>
+                    <!-- Wish Card 6 -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:rotate-[3deg] hover:scale-105 hover:shadow-sky-500/50">
+                        <p class="text-lg text-slate-700 mb-4">"Nangal enrum annandhu parkum engal manidharul manikam Mr.Karthick mama"</p>
+                        <p class="text-right font-bold text-slate-500">- Ram</p>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+    </div>
+
+    <script>
+        let currentPage = 'home';
+        const pages = document.querySelectorAll('.page');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function showPage(pageId) {
+            // Hide the current page
+            const currentPageEl = document.getElementById(`page-${currentPage}`);
+            if (currentPageEl) {
+                currentPageEl.classList.remove('active');
+            }
+            // Deactivate current nav
+            const currentNavEl = document.getElementById(`nav-${currentPage}`);
+            if (currentNavEl) {
+                currentNavEl.classList.remove('active-nav');
+            }
+
+            // Show the new page
+            const newPageEl = document.getElementById(`page-${pageId}`);
+            if (newPageEl) {
+                // Use a short delay to allow the 'display: block' to register before fading in
+                setTimeout(() => {
+                    newPageEl.classList.add('active');
+                }, 10); // 10ms delay
+            }
+            // Activate new nav
+            const newNavEl = document.getElementById(`nav-${pageId}`);
+            if (newNavEl) {
+                newNavEl.classList.add('active-nav');
+            }
+
+            currentPage = pageId;
+            // Scroll to top on page change
+            window.scrollTo(0, 0);
+        }
+
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            if (!container) return;
+            
+            const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6', '#a855f7', '#ec4899']; // red, orange, yellow, green, blue, purple, pink
+            const shapes = ['rect', 'circle'];
+            const numConfetti = 75; // Number of confetti pieces
+
+            for (let i = 0; i < numConfetti; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+
+                const x = Math.random() * 100; // horizontal start %
+                const animDelay = Math.random() * 10; // 0-10s delay
+                const animDuration = 5 + Math.random() * 5; // 5-10s duration
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                confetti.style.left = `${x}vw`;
+                confetti.style.animationDelay = `${animDelay}s`;
+                confetti.style.animationDuration = `${animDuration}s`;
+                confetti.style.backgroundColor = color;
+                
+                // Add different shapes
+                if (shapes[Math.floor(Math.random() * shapes.length)] === 'circle') {
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.height = '10px';
+                    confetti.style.width = '10px';
+                } else {
+                    confetti.style.height = '15px'; // rectangle
+                    confetti.style.width = '7px';
+                }
+                
+                container.appendChild(confetti);
+            }
+        }
+        
+        // Initial page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Show the home page by default
+            showPage('home');
+            // Start the confetti
+            createConfetti();
+        });
+    </script>
+</body>
+</html>
